@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const { v4: uuid } = require("uuid");
-// TODO: Add a Stripe key.
-// const stripe = require("stripe")("")
+const stripe = require("stripe")(process.env.SECRET_KEY)
+require('dotenv').config()
 
 //creating an instance of express
 const app = express();
@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 })
 
 //listen
-app.listen(8282, () => {
-    console.log("Listening on port: 8282")
+const port = process.env.PORT
+app.listen(port, () => {
+    console.log("Listening on port: ", port)
 })
